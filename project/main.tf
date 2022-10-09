@@ -15,6 +15,7 @@ module "vpc" {
 
 # create security group
 module "security_group" {
-  source = "../modules/security-groups"
-  vpc_id = module.vpc.vpc_id
+  source       = "../modules/security-groups"
+  vpc_id       = module.vpc.vpc_id
+  project_name = var.project_name
 }

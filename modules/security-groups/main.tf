@@ -4,7 +4,7 @@ resource "aws_security_group" "alb" {
   vpc_id      = var.vpc_id
 
   dynamic "ingress" {
-    for_each = var.web_ingress
+    for_each = var.allowed_ports
 
     content {
       description = "http access"
@@ -24,6 +24,6 @@ resource "aws_security_group" "alb" {
   }
 
   tags = {
-    Name = "alb security group"
+    Name = "${var.project_name}-alb security group"
   }
 }

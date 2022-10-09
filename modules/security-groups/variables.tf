@@ -1,6 +1,7 @@
 variable "vpc_id" {}
+variable "project_name" {}
 
-variable "web_ingress" {
+variable "allowed_ports" {
   type = map(object({
     port        = number
     protocol    = string
