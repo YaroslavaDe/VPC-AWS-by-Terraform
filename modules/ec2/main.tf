@@ -16,10 +16,18 @@ data "aws_ami" "amazon_linux_2" {
 
 
 # launch the ec2 instance in private subnet az1
-resource "aws_instance" "ec2_instance_az1" {
+resource "aws_instance" "server" {
+  for_each = toset(var.private_subnet_id)
+
   ami                    = data.aws_ami.amazon_linux_2.id
   instance_type          = var.ec2_instance_type
-  subnet_id              = var.private_subnet_id
+  subnet_id              = each.key
   vpc_security_group_ids = [var.ec2_security_group_id]
   key_name               = var.ec2_key_pair
+
+  tags = {
+    Name = "Server ${each.key}"
+  }
 }
+
+
