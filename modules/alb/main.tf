@@ -45,5 +45,13 @@ resource "aws_lb_listener" "alb_http_listener" {
     type             = "forward"
     target_group_arn = aws_lb_target_group.app.arn
   }
-  }
+}
 
+# Attach the target group
+resource "aws_lb_target_group_attachment" "tg_attachment_second" {
+  for_each = toset(var.private_subnet_CIDR)
+
+  target_group_arn = aws_lb_target_group.app.arn
+  target_id        = element(var.instance_alb, index(var.private_subnet_CIDR, each.key))
+  port             = 80
+}

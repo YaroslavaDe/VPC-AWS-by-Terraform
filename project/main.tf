@@ -26,7 +26,7 @@ module "ec2" {
   vpc_id                = module.vpc.vpc_id
   ec2_security_group_id = module.security_group.ec2_security_group_id
   private_subnet_id     = module.vpc.private_subnet_id
-
+  private_subnet_CIDR   = var.private_subnet_CIDR
 
   depends_on = [module.vpc]
 
@@ -39,5 +39,6 @@ module "application_load_balancer" {
   vpc_id                = module.vpc.vpc_id
   instance_alb          = module.ec2.instance_alb
   public_subnet_id      = module.vpc.public_subnet_id
+  private_subnet_CIDR   = var.private_subnet_CIDR
 }
 
