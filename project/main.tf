@@ -32,7 +32,7 @@ module "ec2" {
 
 }
 
-# application load balancer
+# create application load balancer
 module "application_load_balancer" {
   source                = "../modules/alb"
   project_name          = module.vpc.project_name
