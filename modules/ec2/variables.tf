@@ -14,10 +14,12 @@ variable "ec2_instance_type" {
   default     = "t2.micro"
 }
 
-variable "" {
- type = map(object({
-    port        = number
-    protocol    = string
-    cidr_blocks = list(string)
-  }))
+variable "instances" {
+  type = map
+  default = {
+    server = {
+      ami           = "ami-06672d07f62285d1d"
+      instance_type = "t2.micro"
+    }
+  }
 }
