@@ -14,7 +14,6 @@ data "aws_ami" "amazon_linux_2" {
   }
 }
 
-
 # launch the ec2 instance in private subnet az1
 resource "aws_instance" "server" {
   for_each = toset(var.private_subnet_CIDR)
