@@ -47,9 +47,3 @@ resource "aws_lb_listener" "alb_http_listener" {
   }
   }
 
-  # Attach the target group
- resource "aws_lb_target_group_attachment" "tg_attachment" {
-    target_group_arn = aws_lb_target_group.app.arn
-    target_id        = var.instance_alb
-    port             = 80
- }
